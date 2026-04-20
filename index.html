@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio | Analista de Dados</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+    }
+
+    header {
+      background: #020617;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #38bdf8;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: #94a3b8;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    .container {
+      padding: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .about {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .about img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid #38bdf8;
+      object-fit: cover;
+    }
+
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .card {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 20px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #38bdf8;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #1e293b;
+      margin-top: 40px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Mateus Santana</h1>
+  <p>Analista de Dados</p>
+  <nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <section id="sobre" class="about">
+    <img src="foto.png" alt="Foto">
+    <div>
+      <h2>Sobre mim</h2>
+      <p>
+        Analista de Dados com experiência na área da saúde, atuando na análise de indicadores e construção de dashboards para acompanhamento operacional e estratégico. Trabalho com Power BI e SQL na estruturação e exploração de dados, conectando necessidades do negócio a soluções analíticas que apoiam decisões e melhorias contínuas. Hoje, meu foco está em evoluir constantemente na área de dados, aprofundando conhecimentos em análise, visualização e modelagem, sempre buscando extrair valor real das informações.
+      </p>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <h2>Projetos Interativos</h2>
+
+    <div class="projects">
+
+      <div class="card">
+        <h3>Gestão de Saúde Municípal</h3>
+        <p>Este dashboard permite acompanhar o fluxo de atendimentos, Internação, regulação e farmácia, analisando volume, tempo de espera e desempenho das unidades. A ferramenta auxilia na identificação de gargalos e na melhoria da eficiência operacional e da qualidade do atendimento.</p>
+        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiZWQ2NmFkMzUtNTYxMi00NGE3LTk5OWItMmIzNmQ5ZjhhNTBlIiwidCI6IjAzMTBlMmJhLWU4ZWEtNDdjYS1hNTEzLTU4NzQzZTY1ZWVjZCJ9" allowFullScreen="true"></iframe>
+      </div>
+
+      <div class="card">
+        <h3>Análise de Vendas</h3>
+        <p>Dashboard para área de Vendas desenvolvido, que permite aos gestores acompanhar o desempenho das vendas anuais. O Dashboard utiliza o Excel como fonte de dados e tem como objetivo o acompanhamento dos seguintes indicadores.</p>
+        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMTAyZDI1NWMtYWQ5Ni00ODU1LTg5MDAtYjJlZTc2ZDhhYWQ1IiwidCI6IjAzMTBlMmJhLWU4ZWEtNDdjYS1hNTEzLTU4NzQzZTY1ZWVjZCJ9" allowFullScreen="true"></iframe>
+      </div>
+
+      <div class="card">
+        <h3>Análise Financeira</h3>
+        <p>Dashboard para área Financeira desenvolvido, que permite aos gestores acompanhar o desempenho do Financeiro. 
+          O Dashboard utiliza o Excel como fonte de dados e tem como objetivo o acompanhamento dos seguintes indicadores: 
+          Total Mensal (Recebimentos, Pagamentos, Imposto e Lucro), Lucro Mensal, % Margem de Lucro, Quantidade teórica de transações  </p>
+        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNjBjMDFkMmEtNWJlOS00MTA4LTgwMjMtZDM0M2Q5NjU3NGMwIiwidCI6IjAzMTBlMmJhLWU4ZWEtNDdjYS1hNTEzLTU4NzQzZTY1ZWVjZCJ9" allowFullScreen="true"></iframe>
+      </div>
+
+      <div class="card">
+        <h3>Análise Comercial</h3>
+        <p>Apresento um projeto desenvolvido no Power BI como parte de uma simulação para demonstrar o potencial das análises comerciais por meio de visualizações dinâmicas e interativas. 
+          Este dashboard foi idealizado para facilitar a tomada de decisões estratégicas em cenários corporativos. </p>
+        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYTc4NGM4ZWQtMTAyNC00NmI5LWE2N2QtNzFlOGQ2MDEzYWUwIiwidCI6IjAzMTBlMmJhLWU4ZWEtNDdjYS1hNTEzLTU4NzQzZTY1ZWVjZCJ9" allowFullScreen="true"></iframe>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="contato" style="margin-top:50px;">
+    <h2>Contato</h2>
+    <p>Email: mateus31augusto@gmail.com</p>
+    <p>Linkedin: <a href="https://www.linkedin.com/in/mateus-santana-analista-de-dados/" target="_blank">linkedin.com/in/mateus-santana-40a35a174</a></p>
+    <p>Celular: 31 99684-8473</p>
+  </section>
+
+</div>
+
+<footer>
+  <p>© 2026 - Mateus Santana</p>
+</footer>
+
+</body>
+</html>
