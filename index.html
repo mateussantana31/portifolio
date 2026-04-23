@@ -3,174 +3,739 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfólio | Analista de Dados</title>
+  <meta name="description" content="Portfólio de Mateus Santana — Analista de Dados especializado em Power BI, SQL e saúde.">
+  <title>Mateus Santana | Analista de Dados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #050d1a;
+      --navy-2: #0a1628;
+      --navy-3: #0f2040;
+      --sky: #38bdf8;
+      --sky-dim: rgba(56,189,248,0.12);
+      --sky-glow: rgba(56,189,248,0.25);
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --border: rgba(56,189,248,0.15);
+      --nav-h: 68px;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
+      font-family: var(--font-body);
+      background: var(--navy);
+      color: var(--text);
+      min-height: 100vh;
     }
 
-    header {
-      background: #020617;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid #1e293b;
-    }
-
-    header h1 {
-      margin: 0;
-      color: #38bdf8;
-    }
-
+    /* ───── NAV FIXO ───── */
     nav {
-      margin-top: 10px;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(5,13,26,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      z-index: 1000;
     }
 
-    nav a {
-      margin: 0 10px;
-      color: #94a3b8;
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--sky);
+      letter-spacing: -0.03em;
       text-decoration: none;
     }
 
-    nav a:hover {
-      color: #38bdf8;
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      list-style: none;
     }
 
-    .container {
-      padding: 40px;
-      max-width: 1200px;
-      margin: auto;
+    .nav-links a {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 40px;
+      border: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      cursor: pointer;
     }
 
-    .about {
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--sky);
+      border-color: var(--border);
+      background: var(--sky-dim);
+    }
+
+    /* ───── PÁGINAS ───── */
+    .page {
+      display: none;
+      min-height: 100vh;
+      padding-top: var(--nav-h);
+      animation: fadeUp 0.5s ease both;
+    }
+    .page.active { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ───── HERO / SOBRE ───── */
+    .hero {
+      min-height: fit-content;
       display: flex;
       align-items: center;
-      gap: 30px;
-      margin-bottom: 50px;
+      justify-content: center;
+      padding: 32px 48px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .about img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 3px solid #38bdf8;
-      object-fit: cover;
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(56,189,248,0.08) 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    .projects {
+    .hero-inner {
       display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
-
-    .card {
-      background: #020617;
-      border: 1px solid #1e293b;
-      border-radius: 10px;
-      padding: 20px;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: #38bdf8;
-    }
-
-    .card h3 {
-      margin-top: 0;
-    }
-
-    iframe {
+      align-items: center;
+      gap: 80px;
+      max-width: 1100px;
       width: 100%;
-      height: 500px;
-      border: none;
-      border-radius: 8px;
-      margin-top: 15px;
     }
 
+    .hero-photo {
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .hero-photo img {
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--sky);
+      display: block;
+    }
+
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-eyebrow {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 16px;
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5vw, 72px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .hero-role {
+      font-family: var(--font-display);
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 400;
+      color: var(--sky);
+      margin-bottom: 28px;
+    }
+
+    .hero-bio {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #94a3b8;
+      max-width: 540px;
+      margin-bottom: 36px;
+    }
+
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 40px;
+      border: 1px solid var(--border);
+      color: var(--sky);
+      background: var(--sky-dim);
+      letter-spacing: 0.02em;
+    }
+
+    /* contato inline na página sobre */
+    .contact-block {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+    }
+
+    .section-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 20px;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--navy-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 24px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .contact-item:hover {
+      border-color: var(--sky);
+      background: var(--sky-dim);
+    }
+
+    .contact-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: var(--sky-dim);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .contact-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* divider linha */
+    .divider {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 0 48px;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ───── PROJETOS ───── */
+    .projects-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 48px 80px;
+    }
+
+    .page-heading {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .page-sub {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 52px;
+    }
+
+    .projects-grid {
+      display: grid;
+      gap: 32px;
+    }
+
+    .proj-card {
+      background: var(--navy-2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .proj-card:hover {
+      border-color: var(--sky);
+      transform: translateY(-4px);
+    }
+
+    .proj-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 24px 28px 16px;
+    }
+
+    .proj-meta { flex: 1; }
+
+    .proj-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 6px;
+    }
+
+    .proj-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .proj-desc {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #94a3b8;
+    }
+
+    .proj-iframe-wrap {
+      margin: 0 28px 28px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #000;
+    }
+
+    .proj-iframe-wrap iframe {
+      width: 100%;
+      height: 480px;
+      border: none;
+      display: block;
+    }
+
+    /* ───── FOOTER ───── */
     footer {
       text-align: center;
-      padding: 20px;
-      border-top: 1px solid #1e293b;
-      margin-top: 40px;
-      color: #64748b;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
     }
+
+    /* ───── MOBILE ───── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-logo { font-size: 15px; }
+      .nav-links a { font-size: 11px; padding: 6px 10px; }
+      .hero { padding: 48px 24px; }
+      .hero-inner { flex-direction: column; gap: 32px; text-align: center; }
+      .hero-photo img { width: 140px; height: 140px; }
+      .hero-bio { margin: 0 auto 28px; }
+      .hero-chips { justify-content: center; }
+      .contact-block, .divider { padding: 0 24px 48px; }
+      .projects-page { padding: 40px 24px 60px; }
+      .proj-header { flex-direction: column; }
+      .proj-iframe-wrap { margin: 0 16px 20px; }
+      .proj-iframe-wrap iframe { height: 320px; }
+    }
+
+    .experience {
+  background: transparent;
+}
+
+.exp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.exp-item {
+  background: var(--navy-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.exp-item:hover {
+  border-color: var(--sky);
+  transform: translateY(-3px);
+}
+
+.exp-role {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.exp-company {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.exp-item ul {
+  padding-left: 18px;
+}
+
+.exp-item li {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.education-skills {
+  background: transparent;
+}
+
+.info-card {
+  background: var(--navy-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 12px;
+}
+
+.info-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.info-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Mateus Santana</h1>
-  <p>Analista de Dados</p>
+  <!-- NAV FIXO -->
   <nav>
-    <a href="#sobre">Sobre</a>
-    <a href="#projetos">Projetos</a>
-    <a href="#contato">Contato</a>
+    <a class="nav-logo" href="#" onclick="showPage('sobre')">MS</a>
+    <ul class="nav-links">
+      <li><a onclick="showPage('sobre')" data-page="sobre" class="active">Sobre</a></li>
+      <li><a onclick="showPage('projetos')" data-page="projetos">Projetos</a></li>
+      <li><a onclick="showPage('contato')" data-page="contato">Contato</a></li>
+    </ul>
   </nav>
-</header>
 
-<div class="container">
+  <!-- ═══ PÁGINA: SOBRE ═══ -->
+  <main>
+    <div id="page-sobre" class="page active">
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="hero-photo">
+            <img src="foto.png" alt="Foto de Mateus Santana">
+          </div>
+          <div class="hero-text">
+            <p class="hero-eyebrow">Portfólio · Analista de Dados</p>
+            <h1 class="hero-name">Mateus<br>Santana</h1>
+            <p class="hero-role">Analista de Dados</p>
+            <p class="hero-bio">
+              Analista de Dados com experiência na área da saúde, atuando na análise de indicadores e construção de dashboards para acompanhamento operacional e estratégico. Trabalho com Power BI e SQL na estruturação e exploração de dados, conectando necessidades do negócio a soluções analíticas que apoiam decisões e melhorias contínuas.
+            </p>
+            <div class="hero-chips">
+              <span class="chip">Power BI</span>
+              <span class="chip">SQL</span>
+              <span class="chip">Saúde</span>
+              <span class="chip">Dashboards</span>
+              <span class="chip">Análise de Dados</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <section id="sobre" class="about">
-    <img src="foto.png" alt="Foto">
-    <div>
-      <h2>Sobre mim</h2>
-      <p>
-        Analista de Dados com experiência na área da saúde, atuando na análise de indicadores e construção de dashboards para acompanhamento operacional e estratégico. Trabalho com Power BI e SQL na estruturação e exploração de dados, conectando necessidades do negócio a soluções analíticas que apoiam decisões e melhorias contínuas. Hoje, meu foco está em evoluir constantemente na área de dados, aprofundando conhecimentos em análise, visualização e modelagem, sempre buscando extrair valor real das informações.
-      </p>
+      <hr class="divider">
+
+      <section class="experience">
+  <div style="max-width:1100px; margin:0 auto; padding:0 48px 80px;">
+    
+    <p class="section-label">Experiência profissional</p>
+
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <h3 class="exp-role">Analista de Dados</h3>
+        <p class="exp-company">Vivver Sistemas · fev de 2026 - o momento</p>
+        <ul>
+          <li>Desenvolvimento de dashboards interativos para acompanhamento da saúde municipal</li>
+          <li>Monitoramento e análise de indicadores estratégicos</li>
+          <li>Apoio técnico à gestão na interpretação de dados</li>
+          <li>Análise comparativa de desempenho entre municípios</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <h3 class="exp-role">Consultor de Sistemas</h3>
+        <p class="exp-company">IPM Sistemas · abr de 2025 - jan de 2026</p>
+        <ul>
+          <li>Consultoria na utilização do sistema IPM</li>
+          <li>Capacitação de equipes para uso eficiente do sistema, reduzindo erros operacionais</li>
+          <li>Identificação e correção de erros</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <h3 class="exp-role">Analista de Sistemas</h3>
+        <p class="exp-company">Vivver Sistemas · mar de 2022 - mar de 2025</p>
+        <ul>
+          <li>Suporte e orientações ao cliente no uso do sistema</li>
+          <li>Treinamentos e implantação de funcionalidades</li>
+          <li>Análise e correção de inconsistências</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <h3 class="exp-role">Analista de Suporte e Implantação</h3>
+        <p class="exp-company">Salux Technology · ago de 2020 - dez de 2021</p>
+        <ul>
+          <li>Implantação de sistemas hospitalares</li>
+          <li>Atuação em hospitais e clínicas</li>
+          <li>Treinamento técnico de equipes</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <h3 class="exp-role">Suporte Técnico</h3>
+        <p class="exp-company">Santa Casa de Misericórdia de Sabará · jan de 2020 - jul de 2020</p>
+        <ul>
+          <li>Manutenção de computadores</li>
+          <li>Instalação de sistemas e impressoras</li>
+          <li>Configuração de rede</li>
+        </ul>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="projetos">
-    <h2>Projetos Interativos</h2>
+  <hr class="divider">
 
-    <div class="projects">
+  <section class="education-skills">
+  <div style="max-width:1100px; margin:0 auto; padding:0 48px 80px;">
 
-      <div class="card">
-        <h3>Gestão de Saúde Municípal</h3>
-        <p>Este dashboard permite acompanhar o fluxo de atendimentos, Internação, regulação e farmácia, analisando volume, tempo de espera e desempenho das unidades. A ferramenta auxilia na identificação de gargalos e na melhoria da eficiência operacional e da qualidade do atendimento.</p>
-        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiZWQ2NmFkMzUtNTYxMi00NGE3LTk5OWItMmIzNmQ5ZjhhNTBlIiwidCI6IjAzMTBlMmJhLWU4ZWEtNDdjYS1hNTEzLTU4NzQzZTY1ZWVjZCJ9" allowFullScreen="true"></iframe>
-      </div>
-
-      <div class="card">
-        <h3>Análise de Vendas</h3>
-        <p>Dashboard para área de Vendas desenvolvido, que permite aos gestores acompanhar o desempenho das vendas anuais. O Dashboard utiliza o Excel como fonte de dados e tem como objetivo o acompanhamento dos seguintes indicadores.</p>
-        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMTAyZDI1NWMtYWQ5Ni00ODU1LTg5MDAtYjJlZTc2ZDhhYWQ1IiwidCI6IjAzMTBlMmJhLWU4ZWEtNDdjYS1hNTEzLTU4NzQzZTY1ZWVjZCJ9" allowFullScreen="true"></iframe>
-      </div>
-
-      <div class="card">
-        <h3>Análise Financeira</h3>
-        <p>Dashboard para área Financeira desenvolvido, que permite aos gestores acompanhar o desempenho do Financeiro. 
-          O Dashboard utiliza o Excel como fonte de dados e tem como objetivo o acompanhamento dos seguintes indicadores: 
-          Total Mensal (Recebimentos, Pagamentos, Imposto e Lucro), Lucro Mensal, % Margem de Lucro, Quantidade teórica de transações  </p>
-        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNjBjMDFkMmEtNWJlOS00MTA4LTgwMjMtZDM0M2Q5NjU3NGMwIiwidCI6IjAzMTBlMmJhLWU4ZWEtNDdjYS1hNTEzLTU4NzQzZTY1ZWVjZCJ9" allowFullScreen="true"></iframe>
-      </div>
-
-      <div class="card">
-        <h3>Análise Comercial</h3>
-        <p>Apresento um projeto desenvolvido no Power BI como parte de uma simulação para demonstrar o potencial das análises comerciais por meio de visualizações dinâmicas e interativas. 
-          Este dashboard foi idealizado para facilitar a tomada de decisões estratégicas em cenários corporativos. </p>
-        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYTc4NGM4ZWQtMTAyNC00NmI5LWE2N2QtNzFlOGQ2MDEzYWUwIiwidCI6IjAzMTBlMmJhLWU4ZWEtNDdjYS1hNTEzLTU4NzQzZTY1ZWVjZCJ9" allowFullScreen="true"></iframe>
-      </div>
-
+    <!-- FORMAÇÃO -->
+    <p class="section-label">Formação Acadêmica</p>
+    <div class="info-card">
+      <h3 class="info-title">Tecnologia em Análise e Desenvolvimento de Sistemas</h3>
+      <p class="info-sub">Faculdade Pitágoras · 2017 – 2020</p>
     </div>
 
-  </section>
+    <hr class="divider">
 
-  <section id="contato" style="margin-top:50px;">
-    <h2>Contato</h2>
-    <p>Email: mateus31augusto@gmail.com</p>
-    <p>Linkedin: <a href="https://www.linkedin.com/in/mateus-santana-analista-de-dados/" target="_blank">linkedin.com/in/mateus-santana-40a35a174</a></p>
-    <p>Celular: 31 99684-8473</p>
-  </section>
+    <!-- HABILIDADES -->
+    <p class="section-label" style="margin-top:40px;">Habilidades Técnicas</p>
+    <div class="skills-grid">
+      <span class="chip">SQL</span>
+      <span class="chip">PostgreSQL</span>
+      <span class="chip">SQL Server</span>
+      <span class="chip">Power BI</span>
+      <span class="chip">DAX</span>
+      <span class="chip">Power Automate</span>
+      <span class="chip">Power Apps</span>
+      <span class="chip">Análise de Requisitos</span>
+      <span class="chip">Implantação de Sistemas</span>
+      <span class="chip">Integração (APIs / Webservices)</span>
+      <span class="chip">Extração de Dados</span>
+      <span class="chip">Indicadores</span>
+      <span class="chip">Suporte Técnico</span>
+      <span class="chip">Treinamento de Usuários</span>
+      <span class="chip">Zendesk</span>
+      <span class="chip">Gestão X</span>
+    </div>
 
-</div>
+     <hr class="divider">
 
-<footer>
-  <p>© 2026 - Mateus Santana</p>
-</footer>
+    <!-- IDIOMAS -->
+    <p class="section-label" style="margin-top:40px;">Idiomas</p>
+    <div class="info-card">
+      <p class="info-sub">Português — Nativo</p>
+      <p class="info-sub">Inglês — Básico (leitura técnica)</p>
+    </div>
 
+  </div>
+</section>
+
+      <footer><p>© 2026 Mateus Santana</p></footer>
+    </div>
+
+    <!-- ═══ PÁGINA: PROJETOS ═══ -->
+    <div id="page-projetos" class="page">
+      <div class="projects-page">
+        <h2 class="page-heading">Projetos</h2>
+        <p class="page-sub">Dashboards interativos desenvolvidos no Power BI</p>
+
+        <div class="projects-grid">
+
+          <div class="proj-card">
+            <div class="proj-header">
+              <div class="proj-meta">
+                <p class="proj-tag">Saúde · Power BI · SQL</p>
+                <h3 class="proj-title">Gestão de Saúde Municipal</h3>
+                <p class="proj-desc">Dashboard para acompanhamento do fluxo de atendimentos, internação, regulação e farmácia. Analisa volume, tempo de espera e desempenho das unidades, auxiliando na identificação de gargalos e na melhoria da eficiência operacional.</p>
+              </div>
+            </div>
+            <div class="proj-iframe-wrap">
+              <iframe loading="lazy" src="https://app.powerbi.com/view?r=eyJrIjoiZWQ2NmFkMzUtNTYxMi00NGE3LTk5OWItMmIzNmQ5ZjhhNTBlIiwidCI6IjAzMTBlMmJhLWU4ZWEtNDdjYS1hNTEzLTU4NzQzZTY1ZWVjZCJ9" allowfullscreen title="Dashboard Gestão de Saúde Municipal"></iframe>
+            </div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-header">
+              <div class="proj-meta">
+                <p class="proj-tag">Vendas · Power BI · Excel</p>
+                <h3 class="proj-title">Análise de Vendas</h3>
+                <p class="proj-desc">Dashboard para gestores acompanharem o desempenho anual de vendas. Utiliza Excel como fonte de dados e apresenta indicadores de volume, ticket médio, evolução temporal e comparação entre períodos.</p>
+              </div>
+            </div>
+            <div class="proj-iframe-wrap">
+              <iframe loading="lazy" src="https://app.powerbi.com/view?r=eyJrIjoiMTAyZDI1NWMtYWQ5Ni00ODU1LTg5MDAtYjJlZTc2ZDhhYWQ1IiwidCI6IjAzMTBlMmJhLWU4ZWEtNDdjYS1hNTEzLTU4NzQzZTY1ZWVjZCJ9" allowfullscreen title="Dashboard Análise de Vendas"></iframe>
+            </div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-header">
+              <div class="proj-meta">
+                <p class="proj-tag">Financeiro · Power BI · Excel</p>
+                <h3 class="proj-title">Análise Financeira</h3>
+                <p class="proj-desc">Painel financeiro com acompanhamento de recebimentos, pagamentos, impostos e lucro. Exibe margem de lucro mensal, totais por período e quantidade de transações, apoiando decisões estratégicas da área financeira.</p>
+              </div>
+            </div>
+            <div class="proj-iframe-wrap">
+              <iframe loading="lazy" src="https://app.powerbi.com/view?r=eyJrIjoiNjBjMDFkMmEtNWJlOS00MTA4LTgwMjMtZDM0M2Q5NjU3NGMwIiwidCI6IjAzMTBlMmJhLWU4ZWEtNDdjYS1hNTEzLTU4NzQzZTY1ZWVjZCJ9" allowfullscreen title="Dashboard Análise Financeira"></iframe>
+            </div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-header">
+              <div class="proj-meta">
+                <p class="proj-tag">Comercial · Power BI · SQL</p>
+                <h3 class="proj-title">Análise Comercial</h3>
+                <p class="proj-desc">Simulação de cenário corporativo com visualizações dinâmicas e interativas para análise comercial. Desenvolvido para demonstrar o potencial do Power BI na tomada de decisões estratégicas em ambientes de negócio.</p>
+              </div>
+            </div>
+            <div class="proj-iframe-wrap">
+              <iframe loading="lazy" src="https://app.powerbi.com/view?r=eyJrIjoiYTc4NGM4ZWQtMTAyNC00NmI5LWE2N2QtNzFlOGQ2MDEzYWUwIiwidCI6IjAzMTBlMmJhLWU4ZWEtNDdjYS1hNTEzLTU4NzQzZTY1ZWVjZCJ9" allowfullscreen title="Dashboard Análise Comercial"></iframe>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <footer><p>© 2026 Mateus Santana</p></footer>
+    </div>
+
+    <!-- ═══ PÁGINA: CONTATO ═══ -->
+    <div id="page-contato" class="page">
+      <div style="max-width: 700px; margin: 0 auto; padding: 80px 48px;">
+        <p class="section-label">Vamos conversar</p>
+        <h2 class="page-heading">Contato</h2>
+        <p style="font-size:15px; color: var(--muted); margin: 12px 0 48px; line-height:1.7;">
+          Estou disponível para novos projetos, colaborações ou apenas para trocar ideias sobre dados. Escolha o canal de sua preferência.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <a class="contact-item" href="mailto:mateus31augusto@gmail.com" style="justify-content: flex-start;">
+            <div class="contact-icon" style="font-size:18px;">✉</div>
+            <div>
+              <p class="contact-label">E-mail</p>
+              <p class="contact-value">mateus31augusto@gmail.com</p>
+            </div>
+          </a>
+          <a class="contact-item" href="https://www.linkedin.com/in/mateus-santana-analista-de-dados/" target="_blank" style="justify-content: flex-start;">
+            <div class="contact-icon" style="font-size:14px; font-weight:700;">in</div>
+            <div>
+              <p class="contact-label">LinkedIn</p>
+              <p class="contact-value">mateus-santana-analista-de-dados</p>
+            </div>
+          </a>
+          <a class="contact-item" href="tel:+5531996848473" style="justify-content: flex-start;">
+            <div class="contact-icon" style="font-size:16px;">☎</div>
+            <div>
+              <p class="contact-label">Celular / WhatsApp</p>
+              <p class="contact-value">(31) 99684-8473</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <footer><p>© 2026 Mateus Santana</p></footer>
+    </div>
+  </main>
+
+  <script>
+    function showPage(name) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      document.getElementById('page-' + name).classList.add('active');
+      const link = document.querySelector('[data-page="' + name + '"]');
+      if (link) link.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
